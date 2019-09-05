@@ -1,0 +1,144 @@
+@import '../helpers/sass/starter.scss';
+@import '../helpers/sass/normalize.scss';
+@import '../helpers/sass/animate.scss';
+@import '../helpers/sass/mixins.scss';
+@import '../helpers/sass/aos.scss';
+@import '../../../node_modules/slick-carousel/slick/slick.scss';
+
+$font-dir: '../assets/fonts';
+
+@include font-face('Fatum', '#{$font-dir}/AGFatumC', normal, normal, woff woff2);
+@include font-face('Fatum', '#{$font-dir}/AGFatumC-Bold', 700, normal, woff woff2);
+@include font-face('Avanti', '#{$font-dir}/AvantiBold', 700, normal, woff woff2);
+
+
+
+html {
+    // overflow: scroll;
+    overflow-x: hidden;
+}
+
+#app {
+    min-width: 100%;
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+// p {
+//     margin: 25px 0;
+// }
+
+p, h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+}
+
+.line {
+    white-space: nowrap;
+    text-align: inherit !important;
+}
+
+body {
+    // font: 18px/23px 'FuturaPT', Arial, Helvetica, sans-serif;
+    // -webkit-overflow-scrolling:touch;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    font: 16px/16px 'Fatum', Arial, Helvetica, sans-serif;
+    color: #1C1C1C;
+    background-color: #F5F5F3;
+    // overflow-y: scroll;
+}
+
+// .modal-opened {
+//     position: fixed;
+// }
+
+button {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    outline: none;
+}
+
+input {
+    border: none;
+    outline: none;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-appearance: none;
+}
+
+.aos-no-animate {
+    transition: none !important;
+}
+
+[data-no-aos] {
+    transition: none;
+}
+
+.aos-hidden {
+    visibility: hidden;
+}
+
+[data-aos] {
+    visibility: hidden;
+
+    &.aos-animate {
+        visibility: visible;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+
+    body {
+       
+    }
+
+    html.custom-scroll {
+        overflow-y: scroll !important;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+            border: none;
+            padding: 0;
+            box-shadow: none;
+        }
+    
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #F5F5F3; 
+        }
+    
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #1c1c1c; 
+            // border: 1px solid #1c1c1c;
+        }
+    
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #000; 
+        }
+
+        &.black {
+            &::-webkit-scrollbar-track {
+                background: #1c1c1c; 
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background: #F5F5F3; 
+            }
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: #dedede; 
+        }
+    }
+
+    
+}

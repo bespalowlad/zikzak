@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+		<link rel="apple-touch-icon" sizes="180x180" href="<%= BASE_URL %>apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="<%= BASE_URL %>favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="<%= BASE_URL %>favicon-16x16.png">
+		<link rel="manifest" href="<%= BASE_URL %>site.webmanifest">
+		<link rel="mask-icon" href="<%= BASE_URL %>safari-pinned-tab.svg" color="#1c1c1c">
+		<meta name="msapplication-TileColor" content="#1c1c1c">
+		<meta name="theme-color" content="#1c1c1c">
+		<meta name="msapplication-navbutton-color" content="#1c1c1c">
+		<meta name="apple-mobile-web-app-status-bar-style" content="#1c1c1c">
+		<meta property="og:url" content="http://zikzak.ribs.pro" />
+		<meta property="og:title" content="Zikzak architects" />
+		<meta property="og:image" content="<%= BASE_URL %>FB.jpg" />
+		<meta property="og:description" content="Дизайн студия интерьеров жилой и коммерческой недвижимости. Мы увлечены творчеством и намерением воплотить наши идеи в жизнь." />
+		<title>Zikzak architects</title>
+	</head>
+	<body>
+		<noscript>
+			<strong>We're sorry but hello-vue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+		</noscript>
+		<div id="app">
+			<transition name="router-anim">
+				<router-view :key="$route.fullPath"></router-view>
+			</transition>
+		</div>
+		<script>
+			window.config = {
+				langDefault: 'ru',
+				activeLang: localStorage.getItem('lang') != undefined ? localStorage.getItem('lang') : 'ru',
+				langs:{
+					ua:'ua',
+					en:'en',
+					ru:'ru'
+				}
+			};
+
+			let setLang = function() {
+				let lang = localStorage.getItem('lang');
+
+				let currentUrl = window.location.pathname;
+				var langCode = currentUrl.split('/')[1];
+
+				if (lang) {
+					if (langCode == 'ua' || langCode == 'en' || langCode == 'ru') {
+						if (langCode != lang) {
+							var newLang = lang;
+							currentUrl = currentUrl.replace(langCode, (newLang != window.config.langDefault ? newLang : ''));
+							currentUrl = currentUrl.replace('//', '/');
+							window.location.replace(currentUrl);
+						} else {
+							localStorage.setItem('lang', langCode);
+							localStorage.setItem('vueml-lang', langCode);
+							window.config.activeLang = langCode;
+							if (lang == window.config.langDefault) {
+								currentUrl = currentUrl.replace(langCode, '');
+								currentUrl = currentUrl.replace('//', '/');
+								window.location.replace(currentUrl);
+							}
+						}
+					} else {
+						localStorage.setItem('lang', lang);
+						localStorage.setItem('vueml-lang', lang);
+
+						window.config.activeLang = lang;
+						currentUrl = (lang != window.config.langDefault ? '/' + lang : '') + currentUrl;
+						if (lang != window.config.langDefault) window.location.replace(currentUrl);
+					}
+				} else {
+					if (langCode == 'ua' || langCode == 'en' || langCode == 'ru') {
+						localStorage.setItem('lang', langCode);
+						localStorage.setItem('vueml-lang', langCode);
+						window.config.activeLang = langCode;
+
+						if (langCode == window.config.langDefault) {
+							currentUrl = currentUrl.replace(langCode, '');
+							currentUrl = currentUrl.replace('//', '/');
+							window.location.replace(currentUrl);
+						}
+					} else {
+						var nl = window.navigator.language.slice(0,2);
+						if (nl === 'ua' || nl === 'en') {
+							localStorage.setItem('lang', nl);
+							localStorage.setItem('vueml-lang', nl);
+							window.config.activeLang = nl;
+							currentUrl = currentUrl.replace(langCode, nl);
+							currentUrl = currentUrl.replace('//', '/');
+							window.location.replace(currentUrl);
+							return;
+						}
+
+						localStorage.setItem('lang', window.config.langDefault);
+						localStorage.setItem('vueml-lang', window.config.langDefault);
+
+						window.config.activeLang = window.config.langDefault;
+						currentUrl = currentUrl.replace(langCode, '');
+						currentUrl = currentUrl.replace('//', '/');
+						window.location.replace(currentUrl);
+					}
+				}
+			};
+			setLang();
+		</script>
+		<script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
+	</body>
+</html>
