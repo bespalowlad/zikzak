@@ -19,7 +19,7 @@
     "node-sass": "^4.9.4",
     "nouislider": "^14.0.2",
     "smoothscroll-polyfill": "^0.4.4",
-    "three": "^0.103.0",
+    "three": "^0.137.0",
     "vrview": "^0.2.0",
     "vue": "^2.5.17",
     "vue-aos": "^1.0.1",
